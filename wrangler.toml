@@ -1,4 +1,4 @@
-name = "onedrive"
+name = "od"
 type = "webpack"
 workers_dev = true
 account_id = "acfc8c8d8d9187f54803643323e3fc0c"
