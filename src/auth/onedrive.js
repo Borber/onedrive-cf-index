@@ -8,7 +8,7 @@ export async function getAccessToken() {
     return Math.floor(Date.now() / 1000)
   }
   
-  const refresh_token = await (await fetch(`https://onedriveapi-39817-default-rtdb.firebaseio.com/auth/refresh_token.json?auth=${config.firebase_tooken}`)).text()
+  const refresh_token = await BUCKET.get('refresh_token')
 
   // Fetch access token
   const data = await BUCKET.get('onedrive', 'json')
@@ -22,8 +22,7 @@ export async function getAccessToken() {
 
   const resp = await fetch(oneDriveAuthEndpoint, {
     method: 'POST',
-    body: `client_id=${config.client_id}&redirect_uri=${config.redirect_uri}&client_secret=${config.client_secret}
-    &refresh_token=${refresh_token}&grant_type=refresh_token`,
+    body: `client_id=${config.client_id}&redirect_uri=${config.redirect_uri}&client_secret=${config.client_secret}&refresh_token=${refresh_token}&grant_type=refresh_token`,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -41,6 +40,7 @@ export async function getAccessToken() {
     // Finally, return access token
     return data.access_token
   } else {
+    console.info(`client_id=${config.client_id}&redirect_uri=${config.redirect_uri}&client_secret=${config.client_secret}&refresh_token=${refresh_token}&grant_type=refresh_token`)
     // eslint-disable-next-line no-throw-literal
     throw `getAccessToken error ${JSON.stringify(await resp.text())}`
   }
