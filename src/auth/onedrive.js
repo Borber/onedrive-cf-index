@@ -8,7 +8,7 @@ export async function getAccessToken() {
     return Math.floor(Date.now() / 1000)
   }
   
-  const refresh_token = await (await fetch(`https://onedriveapi-39817-default-rtdb.firebaseio.com/auth/refresh_token.json?auth=${FIREBASE_TOKEN}`)).text()
+  const refresh_token = await (await fetch(`https://onedriveapi-39817-default-rtdb.firebaseio.com/auth/refresh_token.json?auth=${config.firebase_tooken}`)).text()
 
   // Fetch access token
   const data = await BUCKET.get('onedrive', 'json')

@@ -4,6 +4,7 @@ const config = {
    * You can use this tool http://heymind.github.io/tools/microsoft-graph-api-auth
    * to get following params: client_id, client_secret, refresh_token & redirect_uri.
    */
+  firebase_tooken: FIREBASE_TOKEN,
   client_id: 'b6190c34-18f0-4447-87b8-e76c89b11193',
   client_secret: CLIENT_SECRET,
   redirect_uri: 'https://heymind.github.io/tools/microsoft-graph-api-auth',
